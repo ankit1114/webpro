@@ -1,0 +1,200 @@
+<?php
+use Drupal\file\Entity\File;
+use Drupal\Core\Link;
+use Drupal\core\Url;
+
+  function webpro_preprocess_page(&$variables) {
+
+    $site_config = \Drupal::config('system.site');
+
+    $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+
+    $variables['webpro_facebook_link'] = theme_get_setting('webpro_facebook_link');
+    $variables['webpro_twitter_link'] = theme_get_setting('webpro_twitter_link');
+    $variables['webpro_linkedin_link'] = theme_get_setting('webpro_linkedin_link');
+    $variables['webpro_instagram_link'] = theme_get_setting('webpro_instagram_link');
+    $variables['webpro_medium_link'] = theme_get_setting('webpro_medium_link');
+
+    $menu_tree = \Drupal::menuTree();
+    $parameters = $menu_tree->getCurrentRouteMenuTreeParameters('main');
+    $menuTree = $menu_tree->load('main', $parameters);
+
+    $manipulators = array(
+      array('callable' => 'menu.default_tree_manipulators:checkAccess'),
+      array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
+      array('callable' => 'domain_menu_access.default_tree_manipulators:checkDomain'),
+    );
+    $menuTree = $menu_tree->transform($menuTree, $manipulators);
+
+    if (!empty($menuTree)) {
+      $count = 1;
+      foreach ($menuTree as $key => $treeLink ) {
+        $route = $treeLink->link->getRouteName();
+        $routePerameters = $treeLink->link->getRouteParameters();
+        $title = $treeLink->link->getTitle();
+        $options = $treeLink->link->getOptions();
+        $isActive = $treeLink->inActiveTrail;
+        if ($isActive) {
+          $options['attributes']['class'][] = 'active';
+        }
+        if ($treeLink->link->isEnabled() && $treeLink->access->isAllowed()) {
+          $links[$count]['link'] = Link::createFromRoute($title, $route, $routePerameters, $options)->toString();
+          $links[$count]['isActive'] = $isActive;
+          $mobile_links[$count]['link'] = Link::createFromRoute($title, $route, $routePerameters, $options)->toString();
+          if ($treeLink->hasChildren) {
+            $count2 = 1;
+
+            foreach ($treeLink->subtree as $subLinkTree) {
+              $route = $subLinkTree->link->getRouteName();
+              $routePerameters = $subLinkTree->link->getRouteParameters();
+              $title = $subLinkTree->link->getTitle();
+              $subMenuOptions = $subLinkTree->link->getOptions();
+              if ($subLinkTree->link->isEnabled() && $subLinkTree->access->isAllowed()) {
+                $links[$count]['subMenu'][$count2]['link'] = Link::createFromRoute($title, $route, $routePerameters, $subMenuOptions)->toString();
+                $mobile_links[$count]['subMenu'][$count2]['link'] = Link::createFromRoute($title, $route, $routePerameters, $subMenuOptions)->toString();
+                $count2++;
+              }
+            }
+          }
+          $count++;
+        }
+      }
+    }
+
+    $variables['menu'] = [
+      '#theme' => 'main_nav_links',
+      '#links' => (isset($links)) ? $links : NULL,
+    ];
+    $variables['mobilemenu'] = [
+      '#theme' => 'mobile_nav_links',
+      '#links' => (isset($mobile_links)) ? $mobile_links : NULL,
+    ];
+  }
+
+  function webpro_theme($existing, $type, $theme, $path) {
+    return [
+      'main_nav_links' => [
+        'variables' => [
+          'links' => NULL,
+        ],
+      ],
+      'mobile_nav_links' => [
+        'variables' => [
+          'links' => NULL,
+        ],
+      ],
+    ];
+  }
+
+function webpro_preprocess_main_nav_links(&$variables){
+
+  $variables['webpro_menu_footer_text'] = theme_get_setting('webpro_menu_footer_text');
+  $variables['webpro_menu_footer_link'] = theme_get_setting('webpro_menu_footer_link');
+
+  $fid = theme_get_setting('webpro_menu_image');
+  if ($fid) {
+    $file = File::load($fid[0]);
+    $fileUri = $file->getFileUri();
+    $fileUrl =  file_create_url($fileUri);
+    $variables['menu_image_path'] = $fileUrl;
+  }
+}
+
+function webpro_preprocess_mobile_nav_links(&$variables){
+
+  $variables['webpro_menu_footer_text'] = theme_get_setting('webpro_menu_footer_text');
+  $variables['webpro_menu_footer_link'] = theme_get_setting('webpro_menu_footer_link');
+  $variables['webpro_facebook_link'] = theme_get_setting('webpro_facebook_link');
+  $variables['webpro_linkedin_link'] = theme_get_setting('webpro_linkedin_link');
+
+  $fid = theme_get_setting('webpro_menu_image');
+  if ($fid) {
+    $file = File::load($fid[0]);
+    $fileUri = $file->getFileUri();
+    $fileUrl =  file_create_url($fileUri);
+    $variables['menu_image_path'] = $fileUrl;
+  }
+}
+
+function webpro_preprocess_node(&$variables) {
+  $blockContent = views_embed_view('discover_blogs', 'block_1');
+  $variables['blockContent'] = drupal_render($blockContent);
+
+  $BlogsCategory = views_embed_view('blog_category', 'block_1');
+  $variables['BlogsCategory'] = drupal_render($BlogsCategory);
+
+  $TagsCategory = views_embed_view('blog_category', 'block_2');
+  $variables['TagsCategory'] = drupal_render($TagsCategory);
+
+  $Testimonial = views_embed_view('testimonials', 'block_2');
+  $variables['Testimonial'] = drupal_render($Testimonial);
+
+  $PortfoioMobile = views_embed_view('portfolio_section', 'block_2');
+  $variables['PortfoioMobile'] = drupal_render($PortfoioMobile);
+
+  $OurServices = views_embed_view('our_services_and_products', 'block_1');
+  $variables['OurServices'] = drupal_render($OurServices);
+
+  $ClientAreas = views_embed_view('client_areas', 'block_1');
+  $variables['ClientAreas'] = drupal_render($ClientAreas);
+
+  $HomePage = views_embed_view('home_page_sectors', 'block_1');
+  $variables['HomePage'] = drupal_render($HomePage);
+
+  $TeamExperts = views_embed_view('team_experts', 'block_1');
+  $variables['TeamExperts'] = drupal_render($TeamExperts);
+
+  $Bloglisting = views_embed_view('blog_listing', 'block_1');
+  $variables['Bloglisting'] = drupal_render($Bloglisting);
+
+}
+
+/*
+ *
+ * Implement hook_preprocess_webform()
+ */
+
+function webpro_preprocess_webform(&$variables) {
+  $variables['webpro_address'] = theme_get_setting('webpro_address');
+  $variables['webpro_email'] = theme_get_setting('webpro_email');
+  $variables['webpro_contact_number'] = theme_get_setting('webpro_contact_number');
+  $variables['webpro_facebook_link'] = theme_get_setting('webpro_facebook_link');
+  $variables['webpro_twitter_link'] = theme_get_setting('webpro_twitter_link');
+  $variables['webpro_linkedin_link'] = theme_get_setting('webpro_linkedin_link');
+  $variables['webpro_instagram_link'] = theme_get_setting('webpro_instagram_link');
+  $variables['webpro_medium_link'] = theme_get_setting('webpro_medium_link');
+
+  $variables['highlight_color'] = theme_get_setting('highlight_color');
+
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Show selected domains for each menulink on the menu edit page.
+ */
+/*function webpro_preprocess_table__menu_overview(&$variables) {
+  $variables['header'][] = [
+    'tag' => 'th',
+    'content' => t('Domains'),
+  ];
+
+  foreach ($variables['rows'] as $index => $row) {
+
+    $uuid = $variables['rows'][$index]['attributes']->storage()['data-drupal-selector']->value();
+    $uuid = str_replace('edit-links-menu-plugin-idmenu-link-content', '', $uuid);
+    $entity = \Drupal::service('entity.repository')->loadEntityByUuid('menu_link_content', $uuid);
+    $domains = $entity->field_domain_access->getValue();
+    $selected_domains = [];
+    foreach ($domains as $key => $value) {
+      $selected_domains[] = $entity->field_domain_access[$key]->entity->get('name');
+    }
+    $selected_domains = implode(', ', $selected_domains);
+    $variables['rows'][$index]['cells'][] = [
+      'tag' => 'td',
+      'content' => $selected_domains,
+    ];
+  }
+}
+*/

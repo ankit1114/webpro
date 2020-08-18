@@ -1,0 +1,5 @@
+#site-map{ max-width: 70%; margin: 1em auto 50px; }
+#site-map ul li.leaf { list-style-image: none; list-style-type: disc; }
+#site-map ul li a{ color: #0074BD; font-size: 15px; }
+#site-map ul li a:hover { text-decoration: underline; }
+#site-map ul li.expanded ul li { margin-bottom: 10px; }

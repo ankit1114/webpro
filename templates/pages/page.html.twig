@@ -1,0 +1,61 @@
+<header class="header ">
+  <a href="/" title="Home" class="logo ds-logo">
+    <img src="{{ logopath }}" alt="Logo" class= "nonsticky-logo"/>
+    <img src="{{ logopath }}" alt="Logo" class= "sticky-logo"/>
+  </a>
+  <div class="menu-container">
+    <div class="nav-wrap">
+      {{ menu }}
+    </div>
+  </div>
+  <div class="mebile-menu-wrap">
+    <div class="mobile-menu-header">
+      <a href="/" title="Home" >
+        <img src="{{ logopath }}" alt="Logo" class= "nonsticky-logo"/>
+        <img src="{{ logopath }}" alt="Logo" class= "sticky-logo"/>
+      </a>
+      <button class="mobile-menu-btn">
+        <span class="one"></span>
+        <span class="two"></span>
+        <span class="three"></span>
+      </button>
+    </div>
+    <nav class="mobile-nav">
+      {{ mobilemenu }}
+    </nav>
+  </div>
+</header>
+
+{% if page.content %}
+  {{ page.content }}
+{% endif %}
+
+  <!--Footer Start-->
+<footer class="footer">
+  <div class="wrapperInner">
+    <div class="social">
+      <a href="{{ webpro_facebook_link }}" class="fa fa-facebook" target="_blank"></a>
+      <a href="{{ webpro_twitter_link }}" class="fa fa-twitter" target="_blank"></a>
+      <a href="{{ webpro_linkedin_link }}" class="fa fa-linkedin" target="_blank"></a>
+      <a href="{{ webpro_instagram_link }}" class="fa fa-instagram" target="_blank"></a>
+      <a href="{{ webpro_medium_link }}" class="fa fa-medium" target="_blank"></a>
+    </div>
+    <ul class="list-unstyled footer-list">
+    {% if page.footer %}
+      {{ page.footer }}
+    {% endif %}
+    </ul>
+    <div class="footerInfo">
+      <div class="region region-footer">
+        <div id="block-block-12" class="block block-block">
+          <div class="content">
+            <div class="content">
+              <span>Website Design &amp; Development by <a href="https://webpro-it.co.uk/" target="_blank">WEBPRO</a></span> <b>|</b>
+              <span><a href="https://webpro-it.co.uk/" target="_blank">Copyright {{ "now"|date("Y") }} WEBPRO</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

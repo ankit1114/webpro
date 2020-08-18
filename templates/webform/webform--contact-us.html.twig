@@ -1,0 +1,130 @@
+{#
+/**
+ * @file
+ * Theme implementation for a 'webform' element.
+ *
+ * This is an copy of the webform.html.twig theme_wrapper which includes the
+ * 'title_prefix' and 'title_suffix' variables needed for
+ * contextual links to appear.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the webform.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_webform()
+ * @see _webform_form_after_build()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="clearfix">
+  <section class="contactMain">
+    <div class="mapSec">
+      {{ render_block('googlemap') }}
+    </div>
+    <div class="contactSec">
+      <div class="cTop clear">
+        <aside class="two-col">
+          <div class="adrs">
+            <h2>Give us a bell</h2>
+            <address>
+              {{ webpro_address }}
+              <div class="contact_field">
+                {{ webpro_contact_number }}
+                <a href="mailto:{{ webpro_email }}">{{ webpro_email }}</a>
+              </div>
+            </address>
+          </div>
+        </aside>
+        <aside class="two-col">
+          <div class="footerSocial" style="--main-highlight-color: {{ highlight_color }}">
+            <h2>Find us online</h2>
+            <ul>
+              <li><a target="_blank" href="{{ webpro_facebook_link }}"> <span class="fa fa-facebook"></span>Facebook</a></li>
+              <li><a target="_blank" href="{{ webpro_twitter_link }}"> <span class="fa fa-twitter"></span>Twitter</a></li>
+              <li><a target="_blank" href="{{ webpro_linkedin_link }}"> <span class="fa fa-linkedin"></span>Linkedin</a></li>
+              <li><a target="_blank" href="{{ webpro_instagram_link }}"> <span class="fa fa-instagram"></span>Instagram</a></li>
+              <li><a target="_blank" href="{{ webpro_medium_link }}"> <span class="fa fa-medium"></span>Medium</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <div class="cForm">
+        <div class="region region-content">
+          <div id="block-system-main" class="block block-system">
+            <div class="content">
+              <div class="content">
+                <form {{ attributes }}>
+                  {{ title_prefix }}
+                  <div><h2>Drop us a message</h2>
+                    <div class="formControl">
+                      {{ element.elements.name }}
+                      {{ element.elements.email }}
+                      {{ element.elements.phone_number }}
+                    </div>
+                    <div class="formControl slct">
+                      {{ element.elements.choose_a_subject }}
+                    </div>
+                    <div class="formControl">
+                      {{ element.elements.message }}
+                      <div class="cntct-text">
+                        <div class="small-12 medium-10 large-8 medium-push-1 large-push-1 column webform-gdpr-19 ">
+                          <div class="form-left">
+                            <p>From time to time. we would like to contact you with details of other products or services relating to website/software services and online marketing. If you consent to us contacting you for this purpose please tick to say how you would like us to contact you.</p>
+                          </div>
+                        </div>
+                        <div class="form-center">
+                          <ul class="radio_content radio_content_19 offer-main">
+                            <li class="number_checkbox">
+                              <label class="formcontainer">
+                                {{ element.elements.post }}
+                                <span class="checkmark"></span>
+                              </label>
+                              <label class="formcontainer">
+                                {{ element.elements.email_checkbox }}
+                                <span class="checkmark"></span>
+                              </label>
+                              <label class="formcontainer">
+                                {{ element.elements.telephone }}
+                                <span class="checkmark"></span>
+                              </label>
+                            </li>
+                            <li class="condition_checkbox">
+                              <label class="formcontainer">
+                                {{ element.elements.condition_1 }}
+                                <span class="checkmark"></span>
+                              </label>
+                              <label class="formcontainer">
+                                {{ element.elements.condition_2 }}
+                                <span class="checkmark"></span>
+                              </label>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="formControl captcha">
+                      </div>
+                      <div class="formControl sbmt">
+                        <div class="form-actions">
+                          {{ element.elements.actions }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{ element.form_token }}
+                  {{ element.form_id }}
+                  {{ element.actions }}
+                  {{ title_suffix }}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

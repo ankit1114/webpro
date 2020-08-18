@@ -1,0 +1,21 @@
+{% set buttonLink %}
+  {{ fields.field_team_members_link.content }}
+{% endset %}
+<aside class="fcText">
+  <div class="fcTextIn">
+    <div class="fcTextIn2">
+      <h2>{{ fields.nothing.content }}</h2>
+      {{ fields.body.content }}
+      <a href="{{ buttonLink|striptags|trim }}" class="btn1">Meet the team</a>
+    </div>
+  </div>
+</aside>
+<aside class="fcImg">
+  <div class="fcImgIn">
+    <div class="fcImgIn2">
+      <div class="imgUp">
+        {{ fields.field_image.content }}
+      </div>
+    </div>
+  </div>
+</aside>

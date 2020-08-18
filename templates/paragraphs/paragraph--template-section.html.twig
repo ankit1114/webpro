@@ -1,0 +1,54 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  {% block content %}
+  {% set readMoreLink %}
+    {{ content.field_url_box }}
+  {% endset %}
+    <aside class="three-col">
+      <div class="otBox">
+        {% if content.field_template_images is not empty %}
+          <div class="otSliderBox">
+            <div class="bx-wrapper">
+              <div class="bx-viewport">
+                <ul class="otSlider">
+                  <li>{{ content.field_template_images }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {% if content.field_theme_type %}
+          <h2>{{ content.field_theme_type }}</h2>
+        {% endif %}
+        {% if content.field_intro_text_box %}
+         {{ content.field_intro_text_box }}
+         {% endif %}
+        <!--body -->
+        <div class="feeSec">
+          {% if content.field_setup_fee is not empty %}
+            <div class="feeSecIn">
+              <span>Setup Fee</span>
+              <div class="feePrice">{{ content.field_setup_fee }}<span>*</span></div>
+            </div>
+          {% endif %}
+          {% if content.field_monthly_fee is not empty %}
+            <div class="feeSecIn">
+              <span>Monthly Licence Fee</span>
+              <div class="feePrice">{{ content.field_monthly_fee }}<span>**</span></div>
+            </div>
+          {% endif %}
+        </div>
+        <div class="read-more-link">
+          {{ content.field_url_box }}
+        </div>
+      </div>
+    </aside>
+  {% endblock %}
+{% endblock paragraph %}

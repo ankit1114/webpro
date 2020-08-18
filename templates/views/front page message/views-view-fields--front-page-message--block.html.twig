@@ -1,0 +1,14 @@
+{% set buttonLink %}
+  {{ fields.field_cta_button.content }}
+{% endset %}
+{% set backColor %}
+  {{ fields.field_background_color_1.content }}
+{% endset %}
+<section class="messageMain" style="background: {{ backColor|striptags|trim }} none repeat scroll 0 0;">
+  <div class="wrapperInner">
+    <article class="msgSec">
+      <p>{{ fields.field_text_box.content }}</p>
+      <a href="{{ buttonLink|striptags|trim }}" class="btn2">drop us a message</a>
+    </article>
+  </div>
+</section>

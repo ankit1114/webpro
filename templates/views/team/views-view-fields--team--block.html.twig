@@ -1,0 +1,47 @@
+{% if row.index is even %}
+  <aside class="fcText">
+    <div class="fcTextIn">
+      <div class="fcTextIn2">
+        <h2>{{ fields.title.content }}<b>-</b> <span class="designation">{{ fields.field_position.content }}</span></h2>
+        {{ fields.body.content }}
+        <div class="social social-icon1">
+
+          <!-- <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-google-plus"></a> -->
+        </div>
+      </div>
+    </div>
+  </aside>
+  <aside class="fcImg">
+    <div class="fcImgIn">
+      <div class="fcImgIn2">
+        {{ fields.field_image.content }}
+      </div>
+    </div>
+  </aside>
+{% else %}
+  <aside class="fcText">
+    <div class="fcTextIn">
+      <div class="fcTextIn2">
+        <h2>{{ fields.title.content }}<b>-</b> <span class="designation">{{ fields.field_position.content }}</span></h2>
+        {{ fields.body.content }}
+        <div class="social social-icon1">
+
+          <!-- <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-google-plus"></a> -->
+        </div>
+      </div>
+    </div>
+  </aside>
+  <aside class="fcImg">
+    <div class="fcImgIn">
+      <div class="fcImgIn2">
+        {{ fields.field_image.content }}
+      </div>
+    </div>
+  </aside>
+{% endif %}

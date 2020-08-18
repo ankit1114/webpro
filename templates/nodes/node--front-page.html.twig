@@ -1,0 +1,25 @@
+<section class="home-banner top-banner">
+  <div class="home-banner-slider">
+    <div class="bx-wrapper">
+      <div class="bx-viewport">
+        {{ content.field_slider }}
+      </div>
+    </div>
+  </div>
+  <a href="javascript:void(0)" class="scrollDown"></a>
+</section>
+{% if ClientAreas %}
+  {{ ClientAreas }}
+{% endif %}
+
+{% if PortfoioMobile %}
+  {{ PortfoioMobile }}
+{% endif %}
+
+{% if HomePage %}
+  {{ HomePage }}
+{% endif %}
+
+{% if Testimonial %}
+  {{ Testimonial }}
+{% endif %}

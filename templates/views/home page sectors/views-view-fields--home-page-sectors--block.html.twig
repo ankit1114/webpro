@@ -1,0 +1,38 @@
+{% set buttonLink %}
+  {{ fields.field_external_url.content }}
+{% endset %}
+{% if row.index is even %}
+  <aside class="fcImg">
+    <div class="fcImgIn">
+      <div class="fcImgIn2">
+        {{ fields.field_webpro_image.content }}
+      </div>
+    </div>
+  </aside>
+  <aside class="fcText">
+    <div class="fcTextIn">
+      <div class="fcTextIn2">
+        <h1>{{ fields.title.content }}</h1>
+        {{ fields.body.content }}
+        <a href="{{ buttonLink|striptags|trim }}" class="btn1">CLICK HERE</a>
+      </div>
+    </div>
+  </aside>
+{% else %}
+  <aside class="fcImg">
+    <div class="fcImgIn">
+      <div class="fcImgIn2">
+        {{ fields.field_webpro_image.content }}
+      </div>
+    </div>
+  </aside>
+  <aside class="fcText">
+    <div class="fcTextIn">
+      <div class="fcTextIn2">
+        <h1>{{ fields.title.content }}</h1>
+        {{ fields.body.content }}
+        <a href="{{ buttonLink|striptags|trim }}" class="btn1">CLICK HERE</a>
+      </div>
+    </div>
+  </aside>
+{% endif %}

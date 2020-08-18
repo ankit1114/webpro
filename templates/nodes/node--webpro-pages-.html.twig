@@ -1,0 +1,87 @@
+{% if content.field_header_image %}
+  <section class="top-banner top-inner-baner">
+    {{ content.field_header_image }}
+  </section>
+{% endif %}
+
+{% if content.body|render|trim is not empty %}
+  <section class="sec serviceTextSec aboutText text-center">
+    <article class="wrapperInner2">
+      {{ content.body }}
+    </article>
+  </section>
+{% endif %}
+
+{% if content.field_middle_section|render|trim is not empty %}
+  <section class="servContentMain">
+    <section id="servParallax01" class="servContent">
+      {{ content.field_middle_section }}
+    </section>
+  </section>
+{% endif %}
+
+{% if content.field_a_team_body|render|trim is not empty %}
+  <section class="sec aboutTeam text-center">
+    <article class="wrapperInner2 aboutTeamText">
+      {{ content.field_a_team_body }}
+    </article>
+    {% if content.field_team_support %}
+      <section class="flipContentMain">
+        {{ content.field_team_support }}
+      </section>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% if content.field_template_section|length > 18 %}
+  <section class="sec ourTemplates text-center">
+    <h2>{{ content.field_template }}</h2>
+    <div class="ourTmpInner">
+      <div class="otMain clear">
+        {{ content.field_template_section }}
+      </div>
+    </div>
+    <p class="note">{{ content.field_note }}</p>
+  </section>
+{% endif %}
+
+
+{% if content.field_parallax_image['#items'].0.entity.uri.value and content.field_parallax_body and content.field_parallax_url is not empty %}
+  <section class="servPara text-center" id="servParallax" style="background-image: url('{{ file_url(content.field_parallax_image['#items'].0.entity.uri.value) }}');">
+    <div class="servParaIn">
+      <article class="servPara-text">
+        <div class="servPara-textIn">
+          <div class="servParaText">
+            {{ content.field_parallax_body }}
+            <a href="/contact" class="btn2">Contact Us Now</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+{% endif %}
+
+{% if Testimonial|length > 2730 %}
+  {{ Testimonial }}
+{% endif %}
+
+{% if content.field_our_services_and_pro|render|trim is not empty %}
+  <section class="servProdMain">
+    <div class="wrapperInner">
+      <div class="servProdContent">
+        <h2>OUR PRODUCTS &amp; SERVICES</h2>
+        <div class="content">
+          {{ content.field_our_services_and_pro[0]}}
+          {% for key, value in content.field_our_services_and_pro %}
+             {% if key > 0 %}
+                  {{ ' | ' }}
+                   {{ value }}
+             {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+

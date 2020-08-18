@@ -1,0 +1,11 @@
+name: WebPro
+type: theme
+core: 8.x
+description: A theme for WEBPRO
+
+regions:
+  content: Content
+  footer: Footer
+
+libraries:
+  - webpro/global-styling

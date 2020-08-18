@@ -1,0 +1,21 @@
+<div class="blogSec">
+  <div class="blogImg 11">
+    {{ fields.field_blog_image.content }}
+  </div>
+  <div>
+    <span class="posted-on">Posted:<b>
+      <span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2020-03-24T00:00:00+00:00">{{ fields.field_posted_date.content }}</span></b>
+    </span>
+    <span class="posted-on"><i class="fa fa-share-alt" aria-hidden="true"></i>
+      <a class="addthis_button webpro-addthis" addthis:title="Website Templates&#8202;-&#8202;Ours vs&amp;nbsp;Others - WEBPRO" addthis:url="https://webpro-it.co.uk/template-websites">
+        <img src="https://s7.addthis.com/static/btn/sm-share-en.gif" alt="Share page with AddThis">
+      </a>
+    </span>
+  </div>
+  <div class="title-tooltip desktop">
+    <h2>{{ fields.title.content }}</h2>
+    <span class="title-tooltiptext">{{ fields.field_text_box.content }}</span>
+  </div>
+  <a href="{{ fields.view_node.content }}" class="btn1">READ POST</a>
+</div>
+

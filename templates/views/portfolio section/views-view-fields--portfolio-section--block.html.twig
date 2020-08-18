@@ -1,0 +1,25 @@
+{% set projectLink %}
+  {{ fields.view_node.content }}
+{% endset %}
+{% set logoimage %}
+  {{ fields.field_logo_image.content }}
+{% endset %}
+<li class="two-col">
+  <div class="proMainImg">
+    <div class="tbl1">
+      <div class="tbl-cell1">
+        {{ fields.field_portfolio_image.content }}
+      </div>
+    </div>
+  </div>
+  <div class="projSecHvr">
+    <div class="tbl1">
+      <div class="tbl-cell1">
+        <img typeof="foaf:Image" src="{{ logoimage|striptags|trim }}" width="400" height="400" alt="">
+        <div class="knowMore">
+          <a href="{{ projectLink|striptags|trim }}" class="btn2">VIEW PROJECT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

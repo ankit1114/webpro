@@ -1,0 +1,30 @@
+<section class="top-banner top-inner-baner ">
+  {{ content.field_header_image }}
+</section>
+<section class="sec serviceTextSec listText text-center">
+  <div class="wrapperInner2">
+    <h2>
+      <div class="field field-name-field-intro-text field-type-text field-label-hidden">
+        <div class="field-items">
+          <div class="field-item even">{{ content.field_intro_text }}</div>
+        </div>
+      </div>
+    </h2>
+    <div class="field field-name-field-theme-page-description field-type-text-long field-label-hidden">
+      <div class="field-items">
+        <div class="field-item even">
+          {{ content.field_description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background-image: url('{{ file_url(content.field_center_section_banner_imag['#items'].0.entity.uri.value) }}'); background-position: 50% 25px;" class="bespoke-box bespoke-box-bg-image">
+  <div class="bespoke-inner-box"><!-- <div class="bespoke-inner-box">     -->
+    <p>{{ content.field_banner_image_description_ }}</p>
+        <!-- <a href="#" class="btn-different">Be DIFFERENT</a> -->
+<!-- </div> -->
+    <a href="/contact" class="btn-different">Contact us now </a>
+  </div>
+</div>

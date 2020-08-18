@@ -1,0 +1,28 @@
+{% if links|length > 0 %}
+  <ul class="main-menu">
+    {% for link in links %}
+      {% if link.isActive == 1 %}
+        <li class="active">
+      {% else %}
+        <li>
+      {% endif %}
+        {{ link.link }}
+        {% if link.subMenu|length > 0 %}
+          <div class="mega-submenu">
+            <div class="mega-menu-img">
+              <a href="javascript:void(0)"><img src="{{ menu_image_path }}"></a>
+            </div>
+            <div class="mega-menu-links">
+              <ul>
+                {% for subMenuLink in link.subMenu %}
+                  <li {{ attributes.addClass(classes) }}> {{ subMenuLink.link }} </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="mega-menu-foot"><p>{{ webpro_menu_footer_text }}</p><div class="mm-btn"><a href="{{ webpro_menu_footer_link }}" class="contact-button">Contact us</a></div></div>
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

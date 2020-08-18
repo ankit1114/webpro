@@ -1,0 +1,38 @@
+{% if content.field_header_image %}
+  <section class="top-banner blog-post-banner top-inner-baner">
+    {{ content.field_header_image }}
+  </section>
+{% endif %}
+<section class="sec blogListing blogPost">
+  <div class="wrapperInner1">
+    <div class="blog-post-title">
+      <h2>{{ content.field_blog_title }}</h2>
+    </div>
+    <div class="blog-info">
+      <span class="posted-on">{{ content.field_posted_date }}</b></span>
+      <span class="posted-on"><i class="fa fa-share-alt" aria-hidden="true"></i>
+        {{ (content.addtoany) }}</span>
+      <a href="/our-blog" class="share return"><i class="fa fa-chevron-left"></i><span>Return to all posts</span></a>
+    </div>
+    <div class="blog-post-content clear">
+      <article class="blog-post-main">
+        {{ content.body }}
+      </article>
+      <aside class="blog-post-sidebar clear">
+        <div class="sidebarBox">
+          <h4>CATEGORIES</h4>
+          {{ BlogsCategory }}
+        </div>
+        <div class="sidebarBox">
+          <h4>TAGS</h4>
+          {{ TagsCategory }}
+        </div>
+      </aside>
+    </div>
+    <div class="discoverMoreBlogs">
+      <h2>DISCOVER SOMETHING ELSE...</h2>
+      {{ blockContent }}
+    </div>
+  </div>
+</section>
+

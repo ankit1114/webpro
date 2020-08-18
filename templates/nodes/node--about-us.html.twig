@@ -1,0 +1,29 @@
+<section class="top-banner top-inner-baner">
+  {{ content.field_header_image }}
+</section>
+    <!--About text Start-->
+<section class="sec serviceTextSec aboutText text-center">
+  <article class="wrapperInner2">
+    {{ content.body }}
+  </article>
+</section>
+    <!--About text End-->
+<div class="mobile-img-about">
+  {{ content.field_parallax_image }}
+</div>
+  <!--About para Start-->
+<section class="aboutParaX" id="abtParallax" style="background-image:url('{{ file_url(content.field_parallax_image['#items'].0.entity.uri.value) }}')">
+  <div class="wrapperInner3">
+    <div class="sec abotParaX-content">
+      <div class="wrapperInner2">
+        <h2>{{ content.field_middle_title }}</h2>
+        <p>{{ content.field_summary }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ TeamExperts }}
+
+{{ Testimonial }}
+

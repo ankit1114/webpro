@@ -1,0 +1,31 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  {% block content %}
+    <div class="flipContent clear">
+      <aside class="fcImg">
+        <div class="fcImgIn">
+          <div class="fcImgIn2">
+            {{ content.field_team_support_image }}
+          </div>
+        </div>
+      </aside>
+      <aside class="fcText">
+        <div class="fcTextIn">
+          <div class="fcTextIn2">
+            <h1>{{ content.field_team_support_title }}</h1>
+            {{ content.field_team_support_text }}
+          </div>
+        </div>
+      </aside>
+    </div>
+  {% endblock %}
+{% endblock paragraph %}
+
+

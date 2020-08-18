@@ -1,0 +1,95 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  {% block content %}
+    <div class="wrapperInner2 clear">
+      <div class="servContentInner">
+        <section class="flipContentMain">
+          <div class="flipContent clear">
+            <aside class="fcImg">
+              <div class="fcImgIn">
+                <div class="fcImgIn2">
+                  <div class="DeskImg">
+                    {{ content.field_row_1_square_image }}
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <aside class="fcText fcText-content">
+              <div class="fcTextIn">
+                <div class="fcTextIn2">
+                  {{ content.field_row_1_body }}
+                </div>
+              </div>
+            </aside>
+          </div>
+          <div class="flipContent clear">
+            <aside class="fcImg">
+              <div class="fcImgIn">
+                <div class="fcImgIn2">
+                  <div class="DeskImg">
+                    {{ content.field_row_2_left_square_image }}
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <aside class="fcText fcImg-content">
+              <div class="fcTextIn">
+                <div class="fcTextIn2">
+                    <div class="DeskImg">
+                      {{ content.field_row_2_right_rectangle_imag }}
+                    </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+          <div class="flipContent right clear">
+            <aside class="fcImg">
+              <div class="fcImgIn">
+                <div class="fcImgIn2">
+                  <div class="DeskImg">
+                    {{ content.field_row_3_square_image }}
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <aside class="fcText fcText-content">
+              <div class="fcTextIn">
+                <div class="fcTextIn2">
+                  {{ content.field_row_3_body }}
+                </div>
+              </div>
+            </aside>
+          </div>
+          <div class="flipContent right clear">
+            <aside class="fcImg">
+              <div class="fcImgIn">
+                <div class="fcImgIn2">
+                  <div class="DeskImg">
+                    {{ content.field_row_4_right_square_image }}
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <aside class="fcText fcImg-content">
+              <div class="fcTextIn">
+                <div class="fcTextIn2">
+                  <div class="DeskImg">
+                    {{ content.field_row_4_left_rectangle_image }}
+                  </div>
+                  <div class="mobileImg"></div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </div>
+  {% endblock %}
+{% endblock paragraph %}

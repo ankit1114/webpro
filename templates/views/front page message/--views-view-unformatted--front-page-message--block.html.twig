@@ -1,0 +1,8 @@
+{{ kint(fields.field_background_color.content|render|striptags|trim) }}
+<section class="messageMain" style="background:{{ fields.field_background_color.content|render|striptags|trim }};">
+  <div class="wrapperInner">
+    {% for row in rows %}
+      {{ row }}
+    {% endfor %}
+  </div>
+</section>

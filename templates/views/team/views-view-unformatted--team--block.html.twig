@@ -1,0 +1,17 @@
+<section class="teamSec">
+  <div class="wrapperInner1">
+    <section class="flipContentMain">
+      {% for row in rows %}
+        {% if loop.index is odd %}
+          <div class="flipContent  odd">
+            {{ row }}
+          </div>
+        {% else %}
+          <div class="flipContent right bg-gray even">
+            {{ row }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </section>
+  </div>
+</section>

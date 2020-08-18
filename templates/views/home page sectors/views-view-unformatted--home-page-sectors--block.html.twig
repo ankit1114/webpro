@@ -1,0 +1,15 @@
+<div class="clearfix">
+  <section class="flipContentMain">
+    {% for row in rows %}
+      {% if loop.index is odd  %}
+        <div class="flipContent  odd">
+          {{ row }}
+        </div>
+      {% else %}
+        <div class="flipContent right even">
+          {{ row }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+</div>
